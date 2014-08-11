@@ -1,0 +1,7 @@
+#!/bin/sh
+while :; do
+	if [ `pgrep pppd | wc -l` -lt 3 ]; then
+		kill `pgrep pppd | sed -n 2p`	# pppoe, pptp, pptp fork
+	fi
+	sleep 1
+done
