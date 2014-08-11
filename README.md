@@ -6,6 +6,7 @@ openwrt pptp拨号会生成2个进程，vpn断线子进程就没了，而openwrt
 而openwrt-gfw的内核优化都是针对OpenWrt Attitude Adjustment 12.09，总不能为这个换掉mw4530r吧。
 mw4530r性价比很高，现在京东易讯都买不到了，而wr1041n网络不稳定、手上的wr703n配置太低了。
 所以我写了个小脚本，每過一秒判断pppd进程剩俩就重拨。一般第一个pptp是pppoe拨号。
+
 while :; do
 	if [ `pgrep pppd | wc -l` -lt 3 ]; then
 		kill `pgrep pppd | sed -n 2p`	# pppoe, pptp, pptp fork
